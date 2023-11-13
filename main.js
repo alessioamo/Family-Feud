@@ -1,7 +1,7 @@
 var app = {
     version: 1,
     currentQ: 0,
-    jsonFile:"questions.json",
+    jsonFile:"https://raw.githubusercontent.com/alessioamo/Family-Feud/main/questions.json",
     board: $("<div class='gameBoard'>"+
              
                "<!--- Scores --->"+
