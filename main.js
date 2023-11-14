@@ -11,6 +11,7 @@ var app = {
              
                "<!--- Question --->"+
                "<div class='questionHolder'>"+
+               // Remove the next span if we don't want the question to display
                  "<span class='question'></span>"+
                "</div>"+
              
