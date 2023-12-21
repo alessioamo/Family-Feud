@@ -194,6 +194,11 @@ var app = {
     changeQuestion: function(){
       app.currentQ++
       app.makeQuestion(app.currentQ)
+
+      // For buzzer stuff
+      someoneBuzzed = false;
+      canPressBuzzer = true;
+      enableAllTeamBuzzers();
     },
     // Inital function
     init: function(){
@@ -225,7 +230,7 @@ var app = {
         audio.pause();
         audio.currentTime = 0; // Reset the audio to the beginning
         audio.remove(); // Optionally remove the audio element
-      }, 30000);
+      }, 300);
     }
   }
 
