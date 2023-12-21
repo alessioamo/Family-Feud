@@ -230,7 +230,7 @@ var app = {
         audio.pause();
         audio.currentTime = 0; // Reset the audio to the beginning
         audio.remove(); // Optionally remove the audio element
-      }, 300);
+      }, 30000);
     }
   }
 
