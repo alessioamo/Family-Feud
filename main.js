@@ -1,3 +1,22 @@
+var jsonFile = "https://raw.githubusercontent.com/alessioamo/Family-Feud/main/questions.json";
+var dataArray;
+
+fetch(jsonFile)
+  .then(response => {
+    // Check if the response is OK
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // Parse the response as JSON
+})
+  .then(data => {
+    dataArray = data;  // Update the global dataArray here
+})
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error.message);
+});
+
+
 var app = {
     version: 1,
     currentQ: 0,
@@ -53,7 +72,9 @@ var app = {
     makeQuestion: function(qNum){
       var qText  = app.questions[qNum]
       var qAnswr = app.allData[qText]
-  
+
+      var questionIndex;
+      
       var qNum = qAnswr.length
           qNum = (qNum<8)? 8: qNum;
           qNum = (qNum % 2 != 0) ? qNum+1: qNum;
@@ -64,7 +85,15 @@ var app = {
       var col2       = app.board.find(".col2")
       
       boardScore.html(0)
-      question.html(qText.replace(/&x22;/gi,'"'))
+      //question.html(qText.replace(/&x22;/gi,'"'))
+      if (typeof dataArray === 'object' && dataArray !== null) {
+        questionIndex = Object.keys(dataArray).indexOf(qText);
+        question.html("<a href='host.html' target='_blank'>" + questionIndex + "</a>")
+      } else {
+          console.log("dataArray is not an object or is null/undefined");
+          question.html("<a href='host.html' target='_blank'>Click Here To Host!</a>")   
+      }
+      
       col1.empty()
       col2.empty()
   
@@ -102,13 +131,20 @@ var app = {
       cards.data("flipped", false)
       
       function showCard(){
+        // Play audio
+        playSoundEffect("correct");
+
         var card = $('.card', this)
         var flipped = $(card).data("flipped")
         var cardRotate = (flipped)?0:-180;
-        TweenLite.to(card, 1, {rotationX:cardRotate, ease:Back.easeOut})
-        flipped = !flipped
-        $(card).data("flipped", flipped)
-        app.getBoardScore()
+        
+        // Introduce a 500ms (0.5 second) delay before flipping the card
+          setTimeout(function() {
+            TweenLite.to(card, 1, {rotationX: cardRotate, ease: Back.easeOut});
+            flipped = !flipped;
+            $(card).data("flipped", flipped);
+            app.getBoardScore();
+        }, 300);
       }
       cardHolders.on('click',showCard)
     },
@@ -169,3 +205,32 @@ var app = {
   }
   app.init()
   //http://www.qwizx.com/gssfx/usa/ff.htm
+
+  function playSoundEffect(event) {
+    // Create audio element
+    var audio = new Audio("audio/" + event + ".mp3");
+    
+    // Play sound
+    audio.play();
+
+    if (event != "themeSong") {
+      // Remove audio element after sound finishes playing
+      audio.onended = function() {
+        audio.remove();
+      };
+    }
+    else {
+      // Pause the audio after 30 seconds
+      setTimeout(function() {
+        audio.pause();
+        audio.currentTime = 0; // Reset the audio to the beginning
+        audio.remove(); // Optionally remove the audio element
+      }, 30000);
+    }
+  }
+
+  document.body.addEventListener("click", function() {
+    console.log("Hello");
+    this.removeEventListener('click', arguments.callee);
+    playSoundEffect("themeSong");
+  });

@@ -1,0 +1,82 @@
+
+html {
+    height: 100%;
+    width: 100%;  
+  }
+  
+  body {
+    background: #a7cfdf;
+    background: -moz-linear-gradient(top, #a7cfdf 0%, #23538a 100%);
+    background: -webkit-linear-gradient(top, #a7cfdf 0%, #23538a 100%);
+    background: linear-gradient(to bottom, #a7cfdf 0%, #23538a 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a', GradientType=0);
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+
+    overflow: hidden;
+  }
+
+/* Table CSS */
+#answerTable {
+    width: 100%;             /* Full width of the container */
+    border-collapse: collapse; /* Collapse borders for better look */
+    font-size: 30px;
+  }
+  
+  /* Style for table headers */
+  #answerTable th {
+    background-color: #f2f2f2; /* Light gray background */
+    border: 1px solid #ddd;    /* Border for cells */
+    padding: 8px 12px;         /* Padding for better spacing inside cells */
+    text-align: center;        /* Center-align text */
+  }
+  
+  /* Style for table cells */
+  #answerTable td {
+    border: 1px solid #ddd;    /* Border for cells */
+    padding: 8px 12px;         /* Padding for better spacing inside cells */
+    text-align: center;        /* Center-align text */
+  }
+  
+  /* Style for even rows (for alternating row colors) */
+  #answerTable tr:nth-child(even) {
+    background-color: #f9f9f9; /* Lighter gray background for even rows */
+  }
+  #answerTable tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Lighter gray background for even rows */
+  }
+  
+  /* Input box and Button style */
+  /* Style for the container */
+  .center-container {
+    display: flex;            /* Use flexbox for layout */
+    justify-content: center; /* Center the child elements horizontally */
+    align-items: center;     /* Center the child elements vertically */
+    flex-direction: column;   /* Stack the child elements vertically */
+    margin-top: 50px;        /* Add some top margin for spacing */
+  }
+  
+  .input-container {
+    display: inline-flex; /* Use inline-flexbox for layout */
+    align-items: center;  /* Center the child elements vertically */
+    margin-top: 20px;    /* Adjust margin as needed */
+  }
+  
+  /* Style for the input */
+  #questionNumber {
+    margin-bottom: 20px;     /* Add some bottom margin for spacing */
+    margin-right: 10px;
+    width: 250px;            /* Set a specific width */
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  /* Style for the button */
+  button {
+    padding: 15px 30px;      /* Increase padding for larger size */
+    margin-bottom: 10px;
+    font-size: 18px;         /* Increase font size */
+    border-radius: 10px;
+  }
+  

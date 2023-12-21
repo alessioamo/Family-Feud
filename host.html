@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Host For Family Feud</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="hostStyle.css">
+    </head>
+    <body>
+        <div class="center-container">
+            <a href="index.html"><button>Back To Main Page</button></a>
+            
+            <div class="input-container">
+                <input type="number" id="questionNumber" placeholder="Enter question number" required>
+                <button onclick="displayQuestion()">Submit</button>
+            </div>
+        </div>       
+        
+        <table id="answerTable">
+            <thead>
+                <tr>
+                    <th colspan="3" id="showQuestion" style="text-align: center;"></th>
+                </tr>
+                <tr>
+                    <th>Number</th>
+                    <th>Answer</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <script src="host.js"></script>
+    </body>
+</html>
