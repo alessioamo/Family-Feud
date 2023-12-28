@@ -239,3 +239,34 @@ var app = {
     this.removeEventListener('click', arguments.callee);
     playSoundEffect("themeSong");
   });
+
+  document.addEventListener('keydown', function(event) {
+    console.log('A key was pressed!', event.keyCode, event.key);
+    
+    // Check for a specific key
+    if (event.key === 'Enter') {
+      playStrike();
+    }
+  });
+
+  function playStrike() {
+    playSoundEffect("strike");
+
+    const image = document.getElementById('animated-image');
+  
+    // Initial style
+    image.style.display = 'block';
+    image.style.width = '0';
+    image.style.height = '0';
+
+    // Animate the image to expand
+    setTimeout(() => {
+      image.style.width = '60vw';  // Set width to fill the viewport
+      image.style.height = '60vh'; // Set height to fill the viewport
+    }, 10); // Using a small delay to ensure the initial style is applied first
+
+    // Make the image disappear after 3 seconds
+    setTimeout(() => {
+      image.style.display = 'none'; // Hide the image
+    }, 2000);
+  }
