@@ -1,5 +1,6 @@
 var jsonFile = "https://raw.githubusercontent.com/alessioamo/Family-Feud/main/questions.json";
 var dataArray;
+var strikeCounter = 0;
 
 fetch(jsonFile)
   .then(response => {
@@ -199,6 +200,9 @@ var app = {
       someoneBuzzed = false;
       canPressBuzzer = true;
       enableAllTeamBuzzers();
+
+      // For Strike stuff
+      strikeCounter = 0;
     },
     // Inital function
     init: function(){
@@ -230,7 +234,7 @@ var app = {
         audio.pause();
         audio.currentTime = 0; // Reset the audio to the beginning
         audio.remove(); // Optionally remove the audio element
-      }, 30000);
+      }, 60000);
     }
   }
 
@@ -250,9 +254,10 @@ var app = {
   });
 
   function playStrike() {
+    strikeCounter++;
     playSoundEffect("strike");
 
-    const image = document.getElementById('animated-image');
+    const image = document.getElementById('animated-image'+strikeCounter);
   
     // Initial style
     image.style.display = 'block';
@@ -269,4 +274,8 @@ var app = {
     setTimeout(() => {
       image.style.display = 'none'; // Hide the image
     }, 2000);
+
+    if (strikeCounter == 3) {
+      strikeCounter = 0;
+    }
   }

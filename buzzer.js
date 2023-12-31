@@ -1,8 +1,8 @@
 var enableControls = true;
 var someoneBuzzed = false;
 var canPressBuzzer = true;
-var TEAM1KEYS = ["1","2","3"];
-var TEAM2KEYS = ["a","b","c"];
+var TEAM1KEYS = ["a","b","c"];
+var TEAM2KEYS = ["1","2","3"];
 var teamKeys = [{teamNumber: 1, keyToPress: TEAM1KEYS, canPress: true}, {teamNumber: 2, keyToPress: TEAM2KEYS, canPress: true}];
 
 window.addEventListener('keydown', function(e) {
@@ -16,6 +16,7 @@ window.addEventListener('keydown', function(e) {
         for (i = 0; i < 2; i++) {
             for (j = 0; j < 3; j++) {
                 if (e.key == teamKeys[i].keyToPress[j])  {
+                    playSoundEffect("buzzer");
                     console.log("here " + teamKeys[i].keyToPress[j]);
                     (document.getElementById("team"+teamKeys[i].teamNumber)).style.background = "linear-gradient(to top left, #939600, #fbff00";
                     //startAnswerTimer("scoreDisplayTeamName"+teamKeys[i].teamNumber);
